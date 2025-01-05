@@ -58,7 +58,7 @@ body {
     --radius: 0.5rem;
 
     /* Sidebar - Updated with very light tea green */
-    --sidebar-background: 108 35% 98%; /* Very light tea green, almost white */
+    --sidebar-background: 98 13% 80%; /* Very light tea green, almost white */
     --sidebar-foreground: 151 24% 22%;
     --sidebar-primary: 151 27% 56%;
     --sidebar-primary-foreground: 0 0% 98%;

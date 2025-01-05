@@ -106,6 +106,9 @@ export function generatePopupContent(gcp: GCP): string {
 
   const typeBadgeStyle = `color: white; background-color: ${typeColor};`;
 
+  const renderDetail = (label: string, value: string | number | undefined) =>
+    value !== undefined ? `<p><strong>${label}:</strong> ${value}</p>` : '';
+
   return `
   <div class="font-sans p-2 sm:p-3 min-w-[200px] sm:min-w-[300px] max-w-[95vw] sm:max-w-[400px]">
     <h3 class="font-semibold text-sm sm:text-base mb-2">${gcp.number}</h3>
@@ -169,48 +172,48 @@ export function generatePopupContent(gcp: GCP): string {
       Other details
     </button>
     <div id="details-${gcp.id}" class="hidden mt-2 max-h-32 overflow-y-auto">
-      ${gcp.instrumentUsed ? `<p><strong>Instrument Used:</strong> ${gcp.instrumentUsed}</p>` : ''}
-      ${gcp.coordinateSystem ? `<p><strong>Coordinate System:</strong> ${gcp.coordinateSystem}</p>` : ''}
+      ${gcp.instrumentUsed ? renderDetail('Instrument Used', gcp.instrumentUsed) : ''}
+      ${gcp.coordinateSystem ? renderDetail('Coordinate System', gcp.coordinateSystem) : ''}
       ${gcp.observationDetails ? `
         <p><strong>Based on Observation</strong></p>
-        <p><strong>Date of Observation:</strong> ${gcp.observationDetails.date}</p>
-        <p><strong>Epoch:</strong> ${gcp.observationDetails.epoch}</p>
-        <p><strong>Northing:</strong> ${gcp.observationDetails.northing}</p>
-        <p><strong>Easting:</strong> ${gcp.observationDetails.easting}</p>
-        <p><strong>Ellipsoidal Height (h):</strong> ${gcp.observationDetails.ellipsoidalHeight}</p>
-        <p><strong>Longitude:</strong> ${gcp.observationDetails.longitude}</p>
-        <p><strong>Latitude:</strong> ${gcp.observationDetails.latitude}</p>
-        <p><strong>Height:</strong> ${gcp.observationDetails.height}</p>
+        ${renderDetail('Date of Observation', gcp.observationDetails.date)}
+        ${renderDetail('Epoch', gcp.observationDetails.epoch)}
+        ${renderDetail('Northing', gcp.observationDetails.northing)}
+        ${renderDetail('Easting', gcp.observationDetails.easting)}
+        ${renderDetail('Ellipsoidal Height (h)', gcp.observationDetails.ellipsoidalHeight)}
+        ${renderDetail('Longitude', gcp.observationDetails.longitude)}
+        ${renderDetail('Latitude', gcp.observationDetails.latitude)}
+        ${renderDetail('Height', gcp.observationDetails.height)}
       ` : ''}
       ${gcp.staticSurveyDetails ? `
         <p><strong>Based on Static Survey</strong></p>
-        <p><strong>Date of Static Survey:</strong> ${gcp.staticSurveyDetails.date}</p>
-        <p><strong>Epoch:</strong> ${gcp.staticSurveyDetails.epoch}</p>
-        <p><strong>Interval:</strong> ${gcp.staticSurveyDetails.interval}</p>
-        <p><strong>Cut off angle:</strong> ${gcp.staticSurveyDetails.cutOffAngle}</p>
-        <p><strong>Height of Antenna:</strong> ${gcp.staticSurveyDetails.antennaHeight} m</p>
-        <p><strong>Latitude:</strong> ${gcp.staticSurveyDetails.latitude}</p>
-        <p><strong>Longitude:</strong> ${gcp.staticSurveyDetails.longitude}</p>
-        <p><strong>Height:</strong> ${gcp.staticSurveyDetails.height} m</p>
-        <p><strong>Northing:</strong> ${gcp.staticSurveyDetails.northing} m</p>
-        <p><strong>Easting:</strong> ${gcp.staticSurveyDetails.easting} m</p>
-        <p><strong>Ellipsoidal Height:</strong> ${gcp.staticSurveyDetails.ellipsoidalHeight} m</p>
+        ${renderDetail('Date of Static Survey', gcp.staticSurveyDetails.date)}
+        ${renderDetail('Epoch', gcp.staticSurveyDetails.epoch)}
+        ${renderDetail('Interval', gcp.staticSurveyDetails.interval)}
+        ${renderDetail('Cut off angle', gcp.staticSurveyDetails.cutOffAngle)}
+        ${renderDetail('Height of Antenna', gcp.staticSurveyDetails.antennaHeight)}
+        ${renderDetail('Latitude', gcp.staticSurveyDetails.latitude)}
+        ${renderDetail('Longitude', gcp.staticSurveyDetails.longitude)}
+        ${renderDetail('Height', gcp.staticSurveyDetails.height)}
+        ${renderDetail('Northing', gcp.staticSurveyDetails.northing)}
+        ${renderDetail('Easting', gcp.staticSurveyDetails.easting)}
+        ${renderDetail('Ellipsoidal Height', gcp.staticSurveyDetails.ellipsoidalHeight)}
       ` : ''}
       ${gcp.denrRecords ? `
         <p><strong>Based on DENR Records</strong></p>
-        <p><strong>Northing:</strong> ${gcp.denrRecords.northing}</p>
-        <p><strong>Easting:</strong> ${gcp.denrRecords.easting}</p>
-        <p><strong>Longitude:</strong> ${gcp.denrRecords.longitude}</p>
-        <p><strong>Latitude:</strong> ${gcp.denrRecords.latitude}</p>
-        <p><strong>Ellipsoidal Height:</strong> ${gcp.denrRecords.ellipsoidalHeight}</p>
-        <p><strong>Elevation:</strong> ${gcp.denrRecords.elevation} m</p>
+        ${renderDetail('Northing', gcp.denrRecords.northing)}
+        ${renderDetail('Easting', gcp.denrRecords.easting)}
+        ${renderDetail('Longitude', gcp.denrRecords.longitude)}
+        ${renderDetail('Latitude', gcp.denrRecords.latitude)}
+        ${renderDetail('Ellipsoidal Height', gcp.denrRecords.ellipsoidalHeight)}
+        ${renderDetail('Elevation', gcp.denrRecords.elevation)}
       ` : ''}
       ${gcp.geotagDetails ? `
         <p><strong>Based on Geotag</strong></p>
-        <p><strong>Date of Geotagging:</strong> ${gcp.geotagDetails.date}</p>
-        <p><strong>App used:</strong> ${gcp.geotagDetails.appUsed}</p>
-        <p><strong>Latitude:</strong> ${gcp.geotagDetails.latitude}</p>
-        <p><strong>Longitude:</strong> ${gcp.geotagDetails.longitude}</p>
+        ${renderDetail('Date of Geotagging', gcp.geotagDetails.date)}
+        ${renderDetail('App used', gcp.geotagDetails.appUsed)}
+        ${renderDetail('Latitude', gcp.geotagDetails.latitude)}
+        ${renderDetail('Longitude', gcp.geotagDetails.longitude)}
       ` : ''}
     </div>
   </div>

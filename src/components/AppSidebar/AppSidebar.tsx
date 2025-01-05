@@ -118,20 +118,33 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
         className={cn(
           isMobile ? 'w-screen' : isCollapsed ? 'min-w-20' : 'w-72',
           'transition-none' // Add this to prevent transition issues
+          
         )}
       >
         {/* Sidebar header */}
         {/* Sidebar header */}
         <div className='flex items-center justify-between p-4 border-b border-gray-200 relative'>
           <div
-            className={`flex flex-col ${
+            className={`flex items-center ${
               isCollapsed && !isMobile ? 'hidden' : ''
             }`}
           >
-            <h1 className='text-lg font-semibold text-black'>GuinoPinPoint</h1>
-            <p className='text-xs text-slate-500'>
-              Ground Control Point Finder
-            </p>
+            <Image
+              src='/images/logo.png' // Replace with the actual path to your logo
+              alt='Logo'
+              width={50}
+              height={50}
+              className='mr-2'
+            />
+            <div className='flex flex-col'>
+              <h1 className='text-lg font-semibold'>
+                <span className='text-purple-500'>GUINO</span>
+                <span className='text-green-500'>PINPOINT</span>
+              </h1>
+              <p className='text-xs text-purple-500'>
+                GUINOBATAN GCP FINDER
+              </p>
+            </div>
           </div>
 
           <TooltipProvider>
@@ -181,11 +194,11 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
               />
 
               <Select onValueChange={setBarangayFilter} value={barangayFilter}>
-                <SelectTrigger className='w-full mb-2 h-8 text-xs'>
+                <SelectTrigger className='w-full mb-2 h-8 text-xs text-white bg-[#52796f] border-[#52796f]'>
                   <SelectValue placeholder='Filter by Barangay' />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='all'>All Barangays</SelectItem>
+                  <SelectItem value='all'>Barangays</SelectItem>
                   {[
                     'Calzada',
                     'Ilawod',
@@ -203,22 +216,22 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
               </Select>
 
               <Select onValueChange={setStatusFilter} value={statusFilter}>
-                <SelectTrigger className='w-full mb-2 h-8 text-xs'>
+                <SelectTrigger className='w-full mb-2 h-8 text-xs text-white bg-[#52796f] border-[#52796f]'>
                   <SelectValue placeholder='Filter by Status' /> {/* Changed from 'Remarks' to 'Status' */}
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='all'>All Status</SelectItem> {/* Changed from 'All Remarks' to 'All Status' */}
+                  <SelectItem value='all'>Status</SelectItem> {/* Changed from 'All Remarks' to 'All Status' */}
                   <SelectItem value='Disturbed'>Disturbed</SelectItem>
                   <SelectItem value='Undisturbed'>Undisturbed</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select onValueChange={setTypeFilter} value={typeFilter}>
-                <SelectTrigger className='w-full h-8 text-xs'>
+                <SelectTrigger className='w-full h-8 text-xs text-white bg-[#52796f] border-[#52796f]'>
                   <SelectValue placeholder='Filter by Type' />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='all'>All Types</SelectItem>
+                  <SelectItem value='all'>Types</SelectItem>
                   {['BLLM', 'BBM'].map((type) => (
                     <SelectItem key={type} value={type}>
                       {type}
