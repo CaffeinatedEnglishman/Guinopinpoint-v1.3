@@ -134,17 +134,17 @@ export function generatePopupContent(gcp: GCP): string {
       </div>
       
       <div class="flex items-center justify-between text-xs sm:text-sm">
-        <span class="text-gray-500 dark:text-gray-400">Remarks</span>
+        <span class="text-gray-500 dark:text-gray-400">Status</span>
         <span class="font-medium px-2 py-0.5 rounded-full text-xs" style="${statusColorStyle}">${
-    gcp.remarks
+    gcp.status
   }</span>
       </div>
     </div>
 
     ${
-      gcp.description
+      gcp.location
         ? `<p class="mt-2 sm:mt-3 pt-1 sm:pt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
-            ${gcp.description}
+            ${gcp.location}
           </p>`
         : ''
     }
@@ -164,64 +164,57 @@ export function generatePopupContent(gcp: GCP): string {
         <span class="text-gray-600 dark:text-gray-300">${gcp.condition}</span>
       </div>
     </div>
+
+    <button onclick="document.getElementById('details-${gcp.id}').classList.toggle('hidden')" class="bg-blue-600 text-white py-2 px-3 rounded-md w-full text-center font-medium cursor-pointer transition-opacity duration-200 mt-3">
+      Other details
+    </button>
+    <div id="details-${gcp.id}" class="hidden mt-2 max-h-32 overflow-y-auto">
+      ${gcp.instrumentUsed ? `<p><strong>Instrument Used:</strong> ${gcp.instrumentUsed}</p>` : ''}
+      ${gcp.coordinateSystem ? `<p><strong>Coordinate System:</strong> ${gcp.coordinateSystem}</p>` : ''}
+      ${gcp.observationDetails ? `
+        <p><strong>Based on Observation</strong></p>
+        <p><strong>Date of Observation:</strong> ${gcp.observationDetails.date}</p>
+        <p><strong>Epoch:</strong> ${gcp.observationDetails.epoch}</p>
+        <p><strong>Northing:</strong> ${gcp.observationDetails.northing}</p>
+        <p><strong>Easting:</strong> ${gcp.observationDetails.easting}</p>
+        <p><strong>Ellipsoidal Height (h):</strong> ${gcp.observationDetails.ellipsoidalHeight}</p>
+        <p><strong>Longitude:</strong> ${gcp.observationDetails.longitude}</p>
+        <p><strong>Latitude:</strong> ${gcp.observationDetails.latitude}</p>
+        <p><strong>Height:</strong> ${gcp.observationDetails.height}</p>
+      ` : ''}
+      ${gcp.staticSurveyDetails ? `
+        <p><strong>Based on Static Survey</strong></p>
+        <p><strong>Date of Static Survey:</strong> ${gcp.staticSurveyDetails.date}</p>
+        <p><strong>Epoch:</strong> ${gcp.staticSurveyDetails.epoch}</p>
+        <p><strong>Interval:</strong> ${gcp.staticSurveyDetails.interval}</p>
+        <p><strong>Cut off angle:</strong> ${gcp.staticSurveyDetails.cutOffAngle}</p>
+        <p><strong>Height of Antenna:</strong> ${gcp.staticSurveyDetails.antennaHeight} m</p>
+        <p><strong>Latitude:</strong> ${gcp.staticSurveyDetails.latitude}</p>
+        <p><strong>Longitude:</strong> ${gcp.staticSurveyDetails.longitude}</p>
+        <p><strong>Height:</strong> ${gcp.staticSurveyDetails.height} m</p>
+        <p><strong>Northing:</strong> ${gcp.staticSurveyDetails.northing} m</p>
+        <p><strong>Easting:</strong> ${gcp.staticSurveyDetails.easting} m</p>
+        <p><strong>Ellipsoidal Height:</strong> ${gcp.staticSurveyDetails.ellipsoidalHeight} m</p>
+      ` : ''}
+      ${gcp.denrRecords ? `
+        <p><strong>Based on DENR Records</strong></p>
+        <p><strong>Northing:</strong> ${gcp.denrRecords.northing}</p>
+        <p><strong>Easting:</strong> ${gcp.denrRecords.easting}</p>
+        <p><strong>Longitude:</strong> ${gcp.denrRecords.longitude}</p>
+        <p><strong>Latitude:</strong> ${gcp.denrRecords.latitude}</p>
+        <p><strong>Ellipsoidal Height:</strong> ${gcp.denrRecords.ellipsoidalHeight}</p>
+        <p><strong>Elevation:</strong> ${gcp.denrRecords.elevation} m</p>
+      ` : ''}
+      ${gcp.geotagDetails ? `
+        <p><strong>Based on Geotag</strong></p>
+        <p><strong>Date of Geotagging:</strong> ${gcp.geotagDetails.date}</p>
+        <p><strong>App used:</strong> ${gcp.geotagDetails.appUsed}</p>
+        <p><strong>Latitude:</strong> ${gcp.geotagDetails.latitude}</p>
+        <p><strong>Longitude:</strong> ${gcp.geotagDetails.longitude}</p>
+      ` : ''}
+    </div>
   </div>
 `;
-
-  // return `
-  //   <div class="font-sans p-2 sm:p-3 min-w-[200px] sm:min-w-[300px] max-w-[95vw] sm:max-w-[400px]">
-  //     <h3 class="font-semibold text-sm sm:text-base mb-2">${gcp.number}</h3>
-  //     ${
-  //       gcp.imageUrl
-  //         ? `<div class="relative mb-2 sm:mb-3 w-full aspect-video rounded-lg overflow-hidden">
-  //             <img
-  //               src="${gcp.imageUrl}"
-  //               alt="${gcp.number}"
-  //               class="w-full h-full object-cover"
-  //             />
-  //           </div>`
-  //         : ''
-  //     }
-  //     <div class="space-y-1 sm:space-y-2">
-  //       <div class="flex items-center justify-between text-xs sm:text-sm">
-  //         <span class="text-gray-500 dark:text-gray-400">Type</span>
-  //         <span class="font-medium px-2 py-0.5 rounded-full text-xs" style="${typeBadgeStyle}">${
-  //   gcp.type
-  // }</span>
-  //       </div>
-
-  //       <div class="flex items-center justify-between text-xs sm:text-sm">
-  //         <span class="text-gray-500 dark:text-gray-400">Barangay</span>
-  //         <span class="font-medium">${gcp.barangay}</span>
-  //       </div>
-
-  //       <div class="flex items-center justify-between text-xs sm:text-sm">
-  //         <span class="text-gray-500 dark:text-gray-400">Status</span>
-  //         <span class="font-medium px-2 py-0.5 rounded-full text-xs" style="${statusColorStyle}">${
-  //   gcp.status
-  // }</span>
-  //       </div>
-  //     </div>
-
-  //     ${
-  //       gcp.description
-  //         ? `<p class="mt-2 sm:mt-3 pt-1 sm:pt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
-  //             ${gcp.description}
-  //           </p>`
-  //         : ''
-  //     }
-
-  //     <div class="mt-2 sm:mt-3 pt-1 sm:pt-2 space-y-0.5 sm:space-y-1 text-xs border-t border-gray-300 dark:border-gray-700">
-
-  //       <div class="flex items-center justify-between text-gray-500 dark:text-gray-400">
-  //         <span>Coordinates</span>
-  //         <span class="font-mono">${gcp.latitude.toFixed(
-  //           6
-  //         )}, ${gcp.longitude.toFixed(6)}</span>
-  //       </div>
-  //     </div>
-
-  //   </div>
-  // `;
 }
 
 // Utility function to initialize default Leaflet icon settings

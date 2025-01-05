@@ -204,20 +204,12 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
 
               <Select onValueChange={setStatusFilter} value={statusFilter}>
                 <SelectTrigger className='w-full mb-2 h-8 text-xs'>
-                  <SelectValue placeholder='Filter by Remarks' />
+                  <SelectValue placeholder='Filter by Status' /> {/* Changed from 'Remarks' to 'Status' */}
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='all'>All Remarks</SelectItem>
-                  <SelectItem value='Intact'>Intact</SelectItem>
+                  <SelectItem value='all'>All Status</SelectItem> {/* Changed from 'All Remarks' to 'All Status' */}
                   <SelectItem value='Disturbed'>Disturbed</SelectItem>
                   <SelectItem value='Undisturbed'>Undisturbed</SelectItem>
-                  <SelectItem value='Unidentified'>Unidentified</SelectItem>
-                  <SelectItem value='Visible yet disturbed'>
-                    Visible yet disturbed
-                  </SelectItem>
-                  <SelectItem value='Intact and visible'>
-                    Intact and visible
-                  </SelectItem>
                 </SelectContent>
               </Select>
 

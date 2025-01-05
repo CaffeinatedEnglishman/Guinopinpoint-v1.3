@@ -125,9 +125,9 @@ const BaseMapComponent = ({
       const newIcon = L.default.divIcon({
         className: 'custom-div-icon',
         html: createMarkerHtml(gcp, isSelected),
-        iconSize: [24, 24],
-        iconAnchor: [12, 12],
-        popupAnchor: [0, -12],
+        iconSize: [30, 30], // Change the size here
+        iconAnchor: [15, 15],
+        popupAnchor: [0, -15],
       });
       marker.setIcon(newIcon);
     },
@@ -365,6 +365,7 @@ const BaseMapComponent = ({
     marker.openPopup();
     activePopupRef.current = marker;
   }, [selectedGCP]);
+
 
   return (
     <div className={cn('relative w-full h-full overflow-hidden', className)}>
