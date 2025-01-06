@@ -834,18 +834,7 @@ export const gcpData: GCP[] = [
       longitude: '123.594848 E',
     },
   },
-  {
-    id: 23,
-    number: 'BLLM UNKNOWN',
-    type: 'BLLM',
-    barangay: 'Iraya',
-    status: 'Unidentified',
-    latitude: 13.193889,
-    longitude: 123.596389,
-    location: 'In front of Funeral Chapel', // Changed from 'description' to 'location'
-    condition: 'Intact on the ground but control number cannot be identified',
-    imageUrl: '/images/Picture6.jpg',
-  },
+  
 ];
 
 export const barangaysList = [

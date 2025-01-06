@@ -110,20 +110,21 @@ export function generatePopupContent(gcp: GCP): string {
     value !== undefined ? `<p><strong>${label}:</strong> ${value}</p>` : '';
 
   return `
-  <div class="font-sans p-2 sm:p-3 min-w-[200px] sm:min-w-[300px] max-w-[95vw] sm:max-w-[400px]">
-    <h3 class="font-semibold text-sm sm:text-base mb-2">${gcp.number}</h3>
+  <div class="font-sans p-1 sm:p-2 min-w-[180px] sm:min-w-[280px] max-w-[90vw] sm:max-w-[380px]">
+    <h3 class="font-semibold text-xs sm:text-sm mb-1">${gcp.number}</h3>
     ${
       gcp.imageUrl
-        ? `<div class="relative mb-2 sm:mb-3 w-full aspect-video rounded-lg overflow-hidden">
+        ? `<div class="relative mb-1 sm:mb-2 w-full aspect-video rounded-lg overflow-hidden">
             <img
               src="${gcp.imageUrl}"
               alt="${gcp.number}"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover cursor-pointer"
+              onclick="document.getElementById('full-image-overlay').classList.remove('hidden'); document.getElementById('full-image').src='${gcp.imageUrl}';"
             />
           </div>`
         : ''
     }
-    <div class="space-y-1 sm:space-y-2">
+    <div class="space-y-0.5 sm:space-y-1">
       <div class="flex items-center justify-between text-xs sm:text-sm">
         <span class="text-gray-500 dark:text-gray-400">Type</span>
         <span class="font-medium px-2 py-0.5 rounded-full text-xs" style="${typeBadgeStyle}">${
@@ -146,13 +147,13 @@ export function generatePopupContent(gcp: GCP): string {
 
     ${
       gcp.location
-        ? `<p class="mt-2 sm:mt-3 pt-1 sm:pt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
+        ? `<p class="mt-1 sm:mt-2 pt-0.5 sm:pt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 border-t border-gray-300 dark:border-gray-700">
             ${gcp.location}
           </p>`
         : ''
     }
 
-    <div class="mt-2 sm:mt-3 pt-1 sm:pt-2 text-xs border-t border-gray-300 dark:border-gray-700">
+    <div class="mt-1 sm:mt-2 pt-0.5 sm:pt-1 text-xs border-t border-gray-300 dark:border-gray-700">
       <div class="flex items-center justify-between text-gray-500 dark:text-gray-400">
         <span>Coordinates</span>
         <span class="font-mono">${gcp.latitude.toFixed(
@@ -161,17 +162,17 @@ export function generatePopupContent(gcp: GCP): string {
       </div>
     </div>
 
-    <div class="mt-2 sm:mt-3 pt-1 sm:pt-2 text-xs border-t border-gray-300 dark:border-gray-700">
+    <div class="mt-1 sm:mt-2 pt-0.5 sm:pt-1 text-xs border-t border-gray-300 dark:border-gray-700">
       <div class="text-gray-500 dark:text-gray-400">
-        <span class="block mb-1">Condition:</span>
+        <span class="block mb-0.5">Condition:</span>
         <span class="text-gray-600 dark:text-gray-300">${gcp.condition}</span>
       </div>
     </div>
 
-    <button onclick="document.getElementById('details-${gcp.id}').classList.toggle('hidden')" class="bg-blue-600 text-white py-2 px-3 rounded-md w-full text-center font-medium cursor-pointer transition-opacity duration-200 mt-3">
+    <button onclick="document.getElementById('details-${gcp.id}').classList.toggle('hidden')" class="bg-blue-600 text-white py-1 px-2 rounded-md w-full text-center font-medium cursor-pointer transition-opacity duration-200 mt-2">
       Other details
     </button>
-    <div id="details-${gcp.id}" class="hidden mt-2 max-h-32 overflow-y-auto">
+    <div id="details-${gcp.id}" class="hidden mt-1 max-h-32 overflow-y-auto">
       ${gcp.instrumentUsed ? renderDetail('Instrument Used', gcp.instrumentUsed) : ''}
       ${gcp.coordinateSystem ? renderDetail('Coordinate System', gcp.coordinateSystem) : ''}
       ${gcp.observationDetails ? `
@@ -216,6 +217,10 @@ export function generatePopupContent(gcp: GCP): string {
         ${renderDetail('Longitude', gcp.geotagDetails.longitude)}
       ` : ''}
     </div>
+  </div>
+  <div id="full-image-overlay" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+    <img id="full-image" class="max-w-full max-h-full" />
+    <button onclick="document.getElementById('full-image-overlay').classList.add('hidden')" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
   </div>
 `;
 }

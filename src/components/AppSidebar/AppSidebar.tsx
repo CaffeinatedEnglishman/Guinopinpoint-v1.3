@@ -194,7 +194,7 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
               />
 
               <Select onValueChange={setBarangayFilter} value={barangayFilter}>
-                <SelectTrigger className='w-full mb-2 h-8 text-xs text-white bg-[#52796f] border-[#52796f]'>
+                <SelectTrigger className='w-full mb-2 h-8 text-xs text-[#52796f] border-[#52796f]'>
                   <SelectValue placeholder='Filter by Barangay' />
                 </SelectTrigger>
                 <SelectContent>
@@ -216,7 +216,7 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
               </Select>
 
               <Select onValueChange={setStatusFilter} value={statusFilter}>
-                <SelectTrigger className='w-full mb-2 h-8 text-xs text-white bg-[#52796f] border-[#52796f]'>
+                <SelectTrigger className='w-full mb-2 h-8 text-xs text-[#52796f] border-[#52796f]'>
                   <SelectValue placeholder='Filter by Status' /> {/* Changed from 'Remarks' to 'Status' */}
                 </SelectTrigger>
                 <SelectContent>
@@ -227,7 +227,7 @@ export function AppSidebar({ closeSidebar }: { closeSidebar?: () => void }) {
               </Select>
 
               <Select onValueChange={setTypeFilter} value={typeFilter}>
-                <SelectTrigger className='w-full h-8 text-xs text-white bg-[#52796f] border-[#52796f]'>
+                <SelectTrigger className='w-full h-8 text-xs text-[#52796f] border-[#52796f]'>
                   <SelectValue placeholder='Filter by Type' />
                 </SelectTrigger>
                 <SelectContent>
