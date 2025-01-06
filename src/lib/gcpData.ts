@@ -102,8 +102,8 @@ export const gcpData: GCP[] = [
     type: 'BLLM',
     barangay: 'Poblacion',
     status: 'Disturbed',
-    latitude: 13.191086,
-    longitude: 123.600594,
+    latitude: 13.191100878,
+    longitude: 123.600585176,
     location: 'By the light post at the Our Lady of the Assumption Parish entrance.', // Changed from 'description' to 'location'
     condition: 'Intact but unidentifiable',
     imageUrl: '/images/Picture7.jpg',
@@ -146,8 +146,8 @@ export const gcpData: GCP[] = [
     type: 'BLLM',
     barangay: 'Inamnan Grande',
     status: 'Undisturbed',
-    latitude: 13.188622,
-    longitude: 123.598747,
+    latitude: 13.187009,
+    longitude: 123.595687,
     location: 'On the side of the road near the entrance to Morga Hills', // Changed from 'description' to 'location'
     condition:
       'The GCP is intact with minimal signs of tarnishing and chipped edges',
@@ -188,8 +188,8 @@ export const gcpData: GCP[] = [
     type: 'BLLM',
     barangay: 'Iraya',
     status: 'Undisturbed',
-    latitude: 13.189519,
-    longitude: 123.602017,
+    latitude: 13.18896171,
+    longitude: 123.602057146,
     location: 'At the Barangay Hall building of barangay Iraya, Guinobatan', // Changed from 'description' to 'location'
     condition:
       'The control point is intact, visible, and well-maintained with little to no signs of tarnishing or any severe destruction',
@@ -237,7 +237,7 @@ export const gcpData: GCP[] = [
     latitude: 13.189686,
     longitude: 123.602786,
     location:
-      'BLLM 153 is located on the sidewalk of Guinobatan East Central School in front of the Motortrade building.', // Changed from 'description' to 'location'
+      'BLLM 154 is located on the sidewalk of Guinobatan East Central School in front of the Motortrade building.', // Changed from 'description' to 'location'
     condition:
       'The GCP is intact and has no signs of any severe dislocation or destruction',
     imageUrl: '/images/Picture16.jpg',
@@ -392,8 +392,8 @@ export const gcpData: GCP[] = [
     type: 'BLLM',
     barangay: 'Inamnan Pequeño',
     status: 'Disturbed',
-    latitude: 13.185,
-    longitude: 123.599167,
+    latitude: 13.185258,
+    longitude: 123.599667,
     location: 'Near Inamnan Pequeño Brgy Hall', // Changed from 'description' to 'location'
     condition:
       'The GCP remains intact as of December, 2024. The control number of the GCP cannot be identified',
@@ -553,7 +553,7 @@ export const gcpData: GCP[] = [
     barangay: 'Poblacion',
     status: 'Undisturbed',
     latitude: 13.190686,
-    longitude: 123.600964,
+    longitude: 123.601075,
     location:
       'Located at the intersection in front of Centro Guinobatan Museum and Abordo Trading building', // Changed from 'description' to 'location'
     condition: 'Intact and Visible. The control point number is identified',
@@ -669,8 +669,8 @@ export const gcpData: GCP[] = [
     type: 'BBM',
     barangay: 'Ilawod',
     status: 'Undisturbed',
-    latitude: 13.191272,
-    longitude: 123.597622,
+    latitude: 13.188258,
+    longitude: 123.596656,
     location:
       'Side of Guinobatan West Central School and in front of Bicol University College of Agriculture and Forestry (BUCAF)', // Changed from 'description' to 'location'
     condition:

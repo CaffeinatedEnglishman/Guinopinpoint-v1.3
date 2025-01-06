@@ -87,6 +87,15 @@ export function createGCPClickHandler(
   };
 }
 
+// Utility function to handle sidebar transition
+export function handleSidebarTransition(isSidebarOpen: boolean): void {
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) {
+    sidebar.style.transition = 'transform 0.3s ease-in-out';
+    sidebar.style.transform = isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)';
+  }
+}
+
 export function generatePopupContent(gcp: GCP): string {
   const typeColor =
     gcp.type === 'BLLM'

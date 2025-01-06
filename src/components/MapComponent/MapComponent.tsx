@@ -153,6 +153,32 @@ const BaseMapComponent = ({
         routeWhileDragging: false,
       }).addTo(mapRef.current);
 
+      const closeButton = L.DomUtil.create('button', 'close-routing-button');
+      closeButton.innerHTML = '&times;';
+      closeButton.style.cssText = `
+        background: none;
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        font-size: 26px;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      `;
+      closeButton.onclick = function() {
+        if (routingControlRef.current) {
+          mapRef.current?.removeControl(routingControlRef.current);
+        }
+        routingControlRef.current = null;
+        setIsNavigating(false);
+      };
+
+      const routingContainer = routingControlRef.current.getContainer();
+      if (routingContainer) {
+        routingContainer.appendChild(closeButton);
+      }
+
       setIsNavigating(true);
     },
     [userLocation]
