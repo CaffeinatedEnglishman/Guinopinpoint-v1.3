@@ -150,7 +150,8 @@ const BaseMapComponent = ({
           L.latLng(userLocation[0], userLocation[1]), // User's current location
           L.latLng(gcp.latitude, gcp.longitude),
         ],
-        routeWhileDragging: false,
+        routeWhileDragging: true,
+        addWaypoints: false, // Disable creation of new markers
       }).addTo(mapRef.current);
 
       const closeButton = L.DomUtil.create('button', 'close-routing-button');
