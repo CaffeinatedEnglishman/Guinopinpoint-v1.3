@@ -169,10 +169,11 @@ const BaseMapComponent = ({
       `;
       closeButton.onclick = function() {
         if (routingControlRef.current) {
-          mapRef.current?.removeControl(routingControlRef.current);
+          const routingContainer = routingControlRef.current.getContainer();
+          if (routingContainer) {
+            routingContainer.style.display = 'none';
+          }
         }
-        routingControlRef.current = null;
-        setIsNavigating(false);
       };
 
       const routingContainer = routingControlRef.current.getContainer();
