@@ -44,15 +44,19 @@ export interface GCP {
     elevation?: number;
   };
   discrepancyDetails?: {
-    firstDenrRecord: {
-      northing: number;
-      easting: number;
-    };
-    secondDenrRecord: {
-      northing: number;
-      easting: number;
-    };
-  };
+    firstDenrRecord?: {
+      northing: number | null;
+      easting: number | null;
+    } | null;
+    secondDenrRecord?: {
+      northing: number | null;
+      easting: number | null;
+    } | null;
+    DenrRecord?: {
+      northing?: number | null;
+      easting?: number | null;
+    } | null;
+};
 }
 export const gcpData: GCP[] = [
   {
@@ -111,7 +115,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 2,
-    number: 'BLLM 1A CAD 201',
+    number: 'BLLM 1A',
     type: 'BLLM',
     barangay: 'Poblacion',
     status: 'Disturbed',
@@ -152,11 +156,7 @@ export const gcpData: GCP[] = [
       ellipsoidalHeight: 69.8,
     },
     discrepancyDetails: {
-      firstDenrRecord: {
-        northing: 0,
-        easting: 0.00009999994654,
-      },
-      secondDenrRecord: {
+      DenrRecord: {
         northing: 0,
         easting: 0.00009999994654,
       },
@@ -164,7 +164,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 3,
-    number: 'BLLM No. 80',
+    number: 'BLLM 80',
     type: 'BLLM',
     barangay: 'Inamnan Grande',
     status: 'Undisturbed',
@@ -194,11 +194,7 @@ export const gcpData: GCP[] = [
       elevation: 154.555,
     },
     discrepancyDetails: {
-      firstDenrRecord: {
-        northing: 4380.7118,
-        easting: 1211.1645,
-      },
-      secondDenrRecord: {
+      DenrRecord: {
         northing: 4380.7118,
         easting: 1211.1645,
       },
@@ -206,7 +202,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 4,
-    number: 'BLLM 153 CAD 201',
+    number: 'BLLM 153',
     type: 'BLLM',
     barangay: 'Iraya',
     status: 'Undisturbed',
@@ -238,11 +234,7 @@ export const gcpData: GCP[] = [
       elevation: 72.776,
     },
     discrepancyDetails: {
-      firstDenrRecord: {
-        northing: 0.0002000001259,
-        easting: 0.0002000000095,
-      },
-      secondDenrRecord: {
+      DenrRecord: {
         northing: 0.0002000001259,
         easting: 0.0002000000095,
       },
@@ -250,7 +242,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 5,
-    number: 'BLLM NO. 154 CAD 201',
+    number: 'BLLM 154',
     type: 'BLLM',
     barangay: 'Iraya',
     status: 'Undisturbed',
@@ -281,11 +273,7 @@ export const gcpData: GCP[] = [
       elevation: 72.498,
     },
     discrepancyDetails: {
-      firstDenrRecord: {
-        northing: 0.09620000003,
-        easting: 0.7089000001,
-      },
-      secondDenrRecord: {
+      DenrRecord: {
         northing: 0.09620000003,
         easting: 0.7089000001,
       },
@@ -293,7 +281,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 6,
-    number: 'BLLM No. 1X (Unknown Control Number) CAD 201',
+    number: 'BLLM 1X',
     type: 'BLLM',
     barangay: 'Inamnan Grande',
     status: 'Unidentified',
@@ -317,7 +305,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 7,
-    number: 'BLLM NO. 71 CAD 201 (Incomplete Control Number)',
+    number: 'BLLM 71',
     type: 'BLLM',
     barangay: 'Calzada',
     status: 'Disturbed',
@@ -345,11 +333,7 @@ export const gcpData: GCP[] = [
       latitude: '1458770.876',
     },
     discrepancyDetails: {
-      firstDenrRecord: {
-        northing: 4.6359,
-        easting: 1.4734,
-      },
-      secondDenrRecord: {
+      DenrRecord: {
         northing: 4.6359,
         easting: 1.4734,
       },
@@ -357,7 +341,7 @@ export const gcpData: GCP[] = [
   },
   {
     id: 8,
-    number: 'BLLM No. X (Unknown Control Number)',
+    number: 'BLLM X',
     type: 'BLLM',
     barangay: 'Inamnan Grande',
     status: 'Unidentified',
@@ -387,19 +371,21 @@ export const gcpData: GCP[] = [
     status: 'Disturbed',
     latitude: 13.190569,
     longitude: 123.601339,
-    location: 'Side of Daraga Home Depot', // Changed from 'description' to 'location'
+    location: 'Side of Daraga Home Depot',
     condition: 'The GCP appears to be no longer attached to the ground',
     imageUrl: '/images/Picture14.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 29, 2024',
-      northing: 1458881.9131,
-      easting: 565030.3661,
-      ellipsoidalHeight: 75.6398,
-      latitude: 13.190785855,
-      longitude: 123.601311088,
-      height: 128.9823,
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.658,
+      latitude: '13.18407868N',
+      longitude: '123.6012471E',
+      northing: 1458881.996,
+      easting: 565023.4292,
     },
     denrRecords: {
       northing: 29639.18,
@@ -407,31 +393,36 @@ export const gcpData: GCP[] = [
       longitude: '565206.999',
       latitude: '1458770.876',
     },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 111.1196,
+        easting: 183.5698,
+      },
+    },
   },
   {
     id: 10,
-    number: 'BBM No. 34',
+    number: 'BBM 34',
     type: 'BBM',
     barangay: 'Calzada',
     status: 'Undisturbed',
     latitude: 13.190753,
     longitude: 123.598378,
-    location:
-      'Located on the left side of Osurman Trading building.', // Changed from 'description' to 'location'
-    condition:
-      'The GCP is intact with little to no signs of tarnishing or any severe destruction',
+    location: 'Located on the left side of Osurman Trading building.',
+    condition: 'The GCP is intact with little to no signs of tarnishing or any severe destruction',
     imageUrl: '/images/Picture11.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458878.6639,
-      easting: 564713.8463,
-      ellipsoidalHeight: 69.1492,
-      latitude: 13.190763238,
-      longitude: 123.598391170,
-      height: 122.4846,
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.8,
+      latitude: '13.18407706N',
+      longitude: '123.5983585E',
+      northing: 1458879.472,
+      easting: 564710.3045,
     },
     denrRecords: {
       northing: 1458873.227,
@@ -440,6 +431,12 @@ export const gcpData: GCP[] = [
       latitude: '13 11 31.44695',
       ellipsoidalHeight: 69.565,
       elevation: 69.976,
+    },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 6.2451,
+        easting: 4.4305,
+      },
     },
   },
   {
@@ -450,19 +447,21 @@ export const gcpData: GCP[] = [
     status: 'Disturbed',
     latitude: 13.189019,
     longitude: 123.600792,
-    location: 'Outside Guinobatan Wet market, in front of Dan-Ke Trading', // Changed from 'description' to 'location'
+    location: 'Outside Guinobatan Wet market, in front of Dan-Ke Trading',
     condition: 'The GCP is moved from its original position',
     imageUrl: '/images/Picture15.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458688.4880,
-      easting: 564973.3646,
-      latitude: 13.189038735,
-      longitude: 123.600781040,
-      height: 124.6372,
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.307,
+      latitude: '13.18391667N',
+      longitude: '123.6007881E',
+      northing: 1458683.551,
+      easting: 564974.0444,
     },
     denrRecords: {
       northing: 1458683.662,
@@ -471,6 +470,12 @@ export const gcpData: GCP[] = [
       latitude: '13 11 25.25797',
       ellipsoidalHeight: 71.904,
       elevation: 72.32,
+    },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 0.1107000001,
+        easting: 0.5366,
+      },
     },
   },
   {
@@ -481,11 +486,22 @@ export const gcpData: GCP[] = [
     status: 'Disturbed',
     latitude: 13.190061,
     longitude: 123.601767,
-    location: 'Near Niones Madrid Dental Clinic', // Changed from 'description' to 'location'
+    location: 'Near Niones Madrid Dental Clinic',
     condition: 'The GCP is not intact on the ground and can be easily moved',
     imageUrl: '/images/Picture1.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.8,
+      latitude: '13.18401017N',
+      longitude: '123.6017534E',
+      northing: 1458806.338,
+      easting: 565078.4958,
+    },
     denrRecords: {
       northing: 1458796.661,
       easting: 565081.824,
@@ -493,6 +509,12 @@ export const gcpData: GCP[] = [
       latitude: '13 11 28.92686',
       ellipsoidalHeight: 72.073,
       elevation: 72.491,
+    },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 9.677,
+        easting: 3.3282,
+      },
     },
   },
   {
@@ -509,15 +531,16 @@ export const gcpData: GCP[] = [
     imageUrl: '/images/Picture9.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458873.6872,
-      easting: 565001.4464,
-      ellipsoidalHeight: 72.0114,
-      latitude: 13.190712121,
-      longitude: 123.601044129,
-      height: 125.3535,
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.8,
+      latitude: '13.18408333N',
+      longitude: '123.6010503E',
+      northing: 1458868.19,
+      easting: 565002.3997,
     },
     denrRecords: {
       northing: 1458868.177,
@@ -527,30 +550,36 @@ export const gcpData: GCP[] = [
       ellipsoidalHeight: 72.638,
       elevation: 73.055,
     },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 0.01280000014,
+        easting: 0.02469999995,
+      },
+    },
   },
   {
     id: 14,
     number: 'BBM 47',
     type: 'BBM',
     barangay: 'Inamnan Pequeño',
-    status: 'Undisturbed',
+    status: 'Disturbed',
     latitude: 13.188075,
     longitude: 123.601481,
-    location: 'In Front of Inamnan Pequeño Caltex and Crispy King', // Changed from 'description' to 'location'
-    condition:
-      'The GCP is intact and has no signs of any severe dislocation or destruction',
+    location: 'In Front of Inamnan Pequeño Caltex and Crispy King',
+    condition: 'The GCP is intact and has no signs of any severe dislocation or destruction',
     imageUrl: '/images/Picture12.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458603.6841,
-      easting: 565044.5595,
-      ellipsoidalHeight: 71.8915,
-      latitude: 13.188270685,
-      longitude: 123.601435947,
-      height: 125.2411,
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.8,
+      latitude: '13.18382975N',
+      longitude: '123.6014461E',
+      northing: 1458598.826,
+      easting: 565044.7277,
     },
     denrRecords: {
       northing: 1458598.188,
@@ -559,6 +588,12 @@ export const gcpData: GCP[] = [
       latitude: '13 11 22.47097',
       ellipsoidalHeight: 72.547,
       elevation: 72.964,
+    },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 0.6383,
+        easting: 0.7213,
+      },
     },
   },
   {
@@ -569,21 +604,21 @@ export const gcpData: GCP[] = [
     status: 'Disturbed',
     latitude: 13.188333,
     longitude: 123.601111,
-    location: 'Located on the side of Caltex in barangay Iraya', // Changed from 'description' to 'location'
-    condition:
-      'The GCP is no longer attached to the ground and can be easily moved or displaced',
+    location: 'Located on the side of Caltex Iraya',
+    condition: 'The GCP is no longer attached to the ground and can be easily moved or displaced',
     imageUrl: '/images/Picture13.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458631.6802,
-      easting: 565017.9857,
-      ellipsoidalHeight: 71.4276,
-      latitude: 13.188524305,
-      longitude: 123.601191421,
-      height: 124.7759,
+    staticSurveyDetails: {
+      date: 'January 11-13, 2024',
+      epoch: 1441,
+      interval: '5s',
+      cutOffAngle: 15,
+      antennaHeight: 1.8,
+      latitude: '13.18386111N',
+      longitude: '123.6011969E',
+      northing: 1458626.717,
+      easting: 565018.2341,
     },
     denrRecords: {
       northing: 1458627.485,
@@ -593,10 +628,16 @@ export const gcpData: GCP[] = [
       ellipsoidalHeight: 72.008,
       elevation: 72.426,
     },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 0.7684000002,
+        easting: 0.4359,
+      },
+    },
   },
   {
     id: 16,
-    number: 'BBM 50',
+    number: 'BBM 50 (GWCS)',
     type: 'BBM',
     barangay: 'Ilawod',
     status: 'Undisturbed',
@@ -609,16 +650,6 @@ export const gcpData: GCP[] = [
     imageUrl: '/images/Picture17.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458937.3845,
-      easting: 564625.7117,
-      ellipsoidalHeight: 68.9119,
-      latitude: 13.191295878,
-      longitude: 123.597579415,
-      height: 122.2439,
-    },
     staticSurveyDetails: {
       date: 'December 27 and 30, 2024',
       epoch: 1441,
@@ -627,10 +658,8 @@ export const gcpData: GCP[] = [
       antennaHeight: 1.80,
       latitude: '13.191299636 N',
       longitude: '123.597596969 E',
-      height: 123.7213,
       northing: 1458937.8047,
       easting: 564627.6136,
-      ellipsoidalHeight: 70.3892,
     },
     denrRecords: {
       northing: 1458931.997,
@@ -640,31 +669,26 @@ export const gcpData: GCP[] = [
       ellipsoidalHeight: 69.609,
       elevation: 70.018,
     },
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 0.000900000101,
+        easting: 0.0004999999655,
+      },
+    },
   },
   {
     id: 17,
-    number: 'BBM 50',
+    number: 'BBM 50 (MCGI)',
     type: 'BBM',
     barangay: 'Calzada',
-    status: 'Undisturbed',
+    status: 'Disturbed',
     latitude: 13.188258,
     longitude: 123.596656,
-    location: 'Near MCGI Church', // Changed from 'description' to 'location'
-    condition:
-      'The GCP is intact with little to no signs of tarnishing or any severe destruction',
+    location: 'Near MCGI church',
+    condition: 'The GCP is intact with little to no signs of tarnishing or any severe destruction',
     imageUrl: '/images/Picture19.jpg',
     instrumentUsed: 'Tersus Oscar',
     coordinateSystem: 'PRS 92',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458604.9403,
-      easting: 564528.8429,
-      ellipsoidalHeight: 72.5752,
-      latitude: 13.188293026,
-      longitude: 123.596678613,
-      height: 125.3131,
-    },
     staticSurveyDetails: {
       date: 'December 27, 2024',
       epoch: 1441,
@@ -673,10 +697,8 @@ export const gcpData: GCP[] = [
       antennaHeight: 1.80,
       northing: 1458603.4055,
       easting: 564529.3468,
-      ellipsoidalHeight: 71.6723,
       latitude: '13.188279142 N',
       longitude: '123.596683228 E',
-      height: 125.0103,
     },
     denrRecords: {
       northing: 1458931.997,
@@ -686,67 +708,12 @@ export const gcpData: GCP[] = [
       ellipsoidalHeight: 69.609,
       elevation: 70.018,
     },
-  },
-  {
-    id: 18,
-    number: 'BBM No. X',
-    type: 'BBM',
-    barangay: 'Calzada',
-    status: 'Disturbed',
-    latitude: 13.190242,
-    longitude: 123.598839,
-    location: 'Located on the side of a drainage near a gray house', // Changed from 'description' to 'location'
-    condition:
-      'Intact on the ground and tilted. Control number cannot be identified',
-    imageUrl: '/images/Picture21.jpg',
-    instrumentUsed: 'Tersus Oscar',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458823.4028,
-      easting: 564760.7321,
-      ellipsoidalHeight: 69.2585,
-      latitude: 13.190262743,
-      longitude: 123.598822484,
-      height: 122.5963,
+    discrepancyDetails: {
+      DenrRecord: {
+        northing: 1110.7361,
+        easting: 343.4756,
+      },
     },
-  },
-  {
-    id: 19,
-    number: 'UNKNOWN GCP',
-    type: 'Unknown',
-    barangay: 'Calzada',
-    status: 'Disturbed',
-    latitude: 13.190678,
-    longitude: 123.598403,
-    location:
-      'In front of Osurman Trading, other side of the road from BBM No. 34', // Changed from 'description' to 'location'
-    condition: 'Intact but unidentifiable',
-    imageUrl: '/images/Picture22.jpg',
-    instrumentUsed: 'Tersus Oscar',
-    observationDetails: {
-      date: 'December 19, 2024',
-      epoch: 120,
-      northing: 1458870.2406,
-      easting: 564705.8607,
-      ellipsoidalHeight: 68.9042,
-      latitude: 13.190687270,
-      longitude: 123.598317322,
-      height: 122.2397,
-    },
-  },
-  {
-    id: 20,
-    number: 'UNKNOWN GCP',
-    type: 'Unknown',
-    barangay: 'Calzada',
-    status: 'Disturbed',
-    latitude: 13.190678,
-    longitude: 123.594847,
-    location: 'Brgy. Calzada, near the Catholic Cemetery in Calzada', // Changed from 'description' to 'location'
-    condition: 'Intact but unidentifiable',
-    imageUrl: '/images/Picture3.jpg',
-    instrumentUsed: 'Tersus Oscar',
   },
 ];
 

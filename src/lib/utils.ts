@@ -196,7 +196,7 @@ export function generatePopupContent(gcp: GCP): string {
         ${renderDetail('Height', gcp.observationDetails.height)}
       ` : ''}
       ${gcp.staticSurveyDetails ? `
-        <p><strong>Based on Static Survey</strong></p>
+        <p><strong>Based on Static Survey and Post-Processed Data</strong></p>
         ${renderDetail('Date of Static Survey', gcp.staticSurveyDetails.date)}
         ${renderDetail('Epoch', gcp.staticSurveyDetails.epoch)}
         ${renderDetail('Interval', gcp.staticSurveyDetails.interval)}
@@ -220,10 +220,18 @@ export function generatePopupContent(gcp: GCP): string {
       ` : ''}
       ${gcp.discrepancyDetails ? `
         <p><strong>Discrepancy Between Two Records</strong></p>
-        ${renderDetail('Based on First DENR Record - Northing', gcp.discrepancyDetails.firstDenrRecord.northing + ' m')}
-        ${renderDetail('Based on First DENR Record - Easting', gcp.discrepancyDetails.firstDenrRecord.easting + ' m')}
-        ${renderDetail('Based on Second DENR Record - Northing', gcp.discrepancyDetails.secondDenrRecord.northing + ' m')}
-        ${renderDetail('Based on Second DENR Record - Easting', gcp.discrepancyDetails.secondDenrRecord.easting + ' m')}
+        ${gcp.discrepancyDetails.firstDenrRecord ? `
+          ${renderDetail('Based on First DENR Record - Northing', gcp.discrepancyDetails.firstDenrRecord.northing + ' m')}
+          ${renderDetail('Based on First DENR Record - Easting', gcp.discrepancyDetails.firstDenrRecord.easting + ' m')}
+        ` : ''}
+        ${gcp.discrepancyDetails.secondDenrRecord ? `
+          ${renderDetail('Based on Second DENR Record - Northing', gcp.discrepancyDetails.secondDenrRecord.northing + ' m')}
+          ${renderDetail('Based on Second DENR Record - Easting', gcp.discrepancyDetails.secondDenrRecord.easting + ' m')}
+        ` : ''}
+        ${gcp.discrepancyDetails.DenrRecord ? `
+          ${renderDetail('Northing', gcp.discrepancyDetails.DenrRecord.northing + ' m')}
+          ${renderDetail('Easting', gcp.discrepancyDetails.DenrRecord.easting + ' m')}
+        ` : ''}
       ` : ''}
     </div>
   </div>
