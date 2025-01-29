@@ -218,12 +218,12 @@ export function generatePopupContent(gcp: GCP): string {
         ${renderDetail('Ellipsoidal Height', gcp.denrRecords.ellipsoidalHeight)}
         ${renderDetail('Elevation', gcp.denrRecords.elevation)}
       ` : ''}
-      ${gcp.geotagDetails ? `
-        <p><strong>Based on Geotag</strong></p>
-        ${renderDetail('Date of Geotagging', gcp.geotagDetails.date)}
-        ${renderDetail('App used', gcp.geotagDetails.appUsed)}
-        ${renderDetail('Latitude', gcp.geotagDetails.latitude)}
-        ${renderDetail('Longitude', gcp.geotagDetails.longitude)}
+      ${gcp.discrepancyDetails ? `
+        <p><strong>Discrepancy Between Two Records</strong></p>
+        ${renderDetail('Based on First DENR Record - Northing', gcp.discrepancyDetails.firstDenrRecord.northing + ' m')}
+        ${renderDetail('Based on First DENR Record - Easting', gcp.discrepancyDetails.firstDenrRecord.easting + ' m')}
+        ${renderDetail('Based on Second DENR Record - Northing', gcp.discrepancyDetails.secondDenrRecord.northing + ' m')}
+        ${renderDetail('Based on Second DENR Record - Easting', gcp.discrepancyDetails.secondDenrRecord.easting + ' m')}
       ` : ''}
     </div>
   </div>
